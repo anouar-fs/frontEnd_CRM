@@ -1,0 +1,23 @@
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #222;
+  --card-bg: #ffffff;
+  --border-color: #e1e1e1;
+  //SideBar
+  --sidebar-bg: #f5f5f5;
+  --sidebar-bg-glass: rgba(0, 0, 0, 0.05);
+  --sidebar-bg-glass-hover: rgba(0,0,0,0.15);
+
+  //Main page
+}
+
+html.dark {
+  --bg-color: #1c1c1c;
+  --text-color: #e6e6e6;
+  --card-bg: #3b3b3b4f;
+  --border-color: #3a3a3a;
+  //SideBar
+  --sidebar-bg: #1e1f26;
+  --sidebar-bg-glass: rgba(255, 255, 255, 0.05);
+  --sidebar-bg-glass-hover: rgba(255, 255, 255, 0.15);
+}

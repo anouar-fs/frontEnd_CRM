@@ -1,0 +1,119 @@
+.leads-table-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid var(--border-color);
+}
+
+.leads-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .primary-btn {
+    background: var(--accent, #6c5ce7);
+    color: white;
+    border: none;
+    padding: 0.55rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(108,92,231,0.4);
+    }
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.leads-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    th {
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding-bottom: 0.8rem;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background 0.2s;
+
+      &:hover {
+        background: rgba(255,255,255,0.04);
+      }
+    }
+
+    td {
+      padding: 0.9rem 0;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .lead-name {
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        background: transparent;
+        border: none;
+        color: var(--accent, #6c5ce7);
+        cursor: pointer;
+        font-size: 0.85rem;
+
+        &.danger {
+          color: #e74c3c;
+        }
+      }
+    }
+  }
+}
+
+/* STATUS BADGES */
+.status {
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  &.new {
+    background: rgba(108,92,231,0.15);
+    color: #6c5ce7;
+  }
+
+  &.contacted {
+    background: rgba(241,196,15,0.15);
+    color: #f1c40f;
+  }
+
+  &.qualified {
+    background: rgba(46,204,113,0.15);
+    color: #2ecc71;
+  }
+
+  &.lost {
+    background: rgba(231,76,60,0.15);
+    color: #e74c3c;
+  }
+}

@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { usegetLeadsSuspenseQuery } from "../../../infrastructure/queries/lead";
 import "./LeadsPage.scss";
+import Pagination from "../../components/Pagination/Pagination";
 
 const LeadsPage = () => {
-    const leads = usegetLeadsSuspenseQuery();
-
+    const pageSize = 10;
+    const [currentPage,setCurrentPage] = useState(1);
+    const data = usegetLeadsSuspenseQuery(currentPage,pageSize);
+    
     return (
         <>
         <div className="leads-table-card">
@@ -21,12 +25,12 @@ const LeadsPage = () => {
                     <th>Company</th>
                     <th>Status</th>
                     <th>Created</th>
-                    <th></th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
             
                 <tbody>
-                  {leads ? leads.map((lead) => (
+                  {data ? data.leads.map((lead) => (
                     <tr key={lead.phone}>
                       <td className="lead-name">{lead.firstName} {lead.lastName}</td>
                       <td>{lead.email}</td>
@@ -36,8 +40,15 @@ const LeadsPage = () => {
                           {lead.source}
                         </span>
                       </td>
-                      {/* <td>{lead.received_at.toISOString()}</td> */}
-                      <td>{"ghgbrege r"}</td>
+                      <td>
+                        {new Date(lead.receivedAt).toLocaleString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </td>
                       <td className="actions">
                         <button>View</button>
                         <button className="danger">Delete</button>
@@ -46,6 +57,12 @@ const LeadsPage = () => {
                   )):"nothing"}
                 </tbody>
               </table>
+
+              <Pagination 
+                currentPage={currentPage}
+                totalPages={data?.pageNumber||0}
+                onPageChange={setCurrentPage}
+              />
             </div>
     </div>
         </>

@@ -2,16 +2,16 @@ import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { leadsQueryKey } from "./cacheQueryKeys";
 import requester from "../requester/requester";
 import { api } from "./config";
-import type { LeadType } from "../../models/leads";
+import type { LeadData } from "../../models/Data/Lead/LeadData";
 
-export const getLeads = ()=>
+export const getLeads = (page:number,pageSize:number)=>
     queryOptions({
-        queryKey: [leadsQueryKey],
-        queryFn: ()=> requester.get<LeadType[]>(api.get.leads()),
+        queryKey: [leadsQueryKey,page,pageSize],
+        queryFn: ()=> requester.get<LeadData>(api.get.leads(page,pageSize)),
         staleTime: Infinity
 })
 
-export const usegetLeadsSuspenseQuery = () =>{
-    const { data: leadssData } = useSuspenseQuery(getLeads());
+export const usegetLeadsSuspenseQuery = (page:number,pageSize:number) =>{
+    const { data: leadssData } = useSuspenseQuery(getLeads(page,pageSize));
     return leadssData;
 }

@@ -6,6 +6,6 @@ export const api = {
     },
     get : {
         users: ()=> '/api/Auth',
-        leads: ()=> '/api/Lead'
+        leads: (page:number,pageSize:number)=> `/api/Lead?page=${page}&pageSize=${pageSize}`,
     }
 }

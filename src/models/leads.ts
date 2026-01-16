@@ -4,7 +4,7 @@ export type LeadType = {
     email: string,
     phone: string,
     source: string,
-    received_at: Date,
+    received_at: string,
     product_interest: string,
     utm_campaign: string
 }

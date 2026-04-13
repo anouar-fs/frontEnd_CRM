@@ -3,12 +3,14 @@ import "./sidebar.scss";
 import {
   Home,
   Users,
+  LayoutDashboard,
   BarChart2,
   Settings,
   LogOut,
   ChevronLeft,
   ChevronRight,
   Target,
+  Calendar
 } from "lucide-react";
 import { useLogoutMutation } from "../../../infrastructure/mutations/useLogoutMutate";
 import { useNavigate } from "react-router-dom";
@@ -22,12 +24,15 @@ export default function Sidebar() {
   const { theme, toggleTheme } = useTheme();
 
   const menu = [
-    { icon: <Home size={20} />, label: "Dashboard", route: PATH_ROUTER.Page1 },
-    { icon: <Users size={20} />, label: "Users", route: PATH_ROUTER.Users },
+    { icon: <LayoutDashboard size={20} />, label: "Dashboard", route: PATH_ROUTER.Dashboard },
+    { icon: <Users size={20} />, label: "Users", route: PATH_ROUTER.Leads },
     { icon: <Target size={20} />, label: "Leads", route: PATH_ROUTER.Leads },
-    { icon: <BarChart2 size={20} />, label: "Analytics", route: PATH_ROUTER.Page1 },
-    { icon: <Settings size={20} />, label: "Settings", route: PATH_ROUTER.Page1 },
+    { icon: <BarChart2 size={20} />, label: "Analytics", route: PATH_ROUTER.Dashboard },
+    { icon: <Settings size={20} />, label: "Settings", route: PATH_ROUTER.Dashboard },
+    { icon: <Calendar size={20} />, label: "Appointment", route: PATH_ROUTER.Appointment },
   ];
+  const currentUrl = window.location.href.split('/');
+  const currentPage = currentUrl[currentUrl.length - 1];
 
   const handleClick = async ()=>{
         await logoutMutation();
@@ -40,18 +45,20 @@ export default function Sidebar() {
       {/* Header */}
       <div className="sidebar__header">
         {!collapsed && <h1 className="sidebar__logo">MyPanel</h1>}
-        <button
-          className="sidebar__collapse-btn"
-          onClick={() => setCollapsed(!collapsed)}
-        >
-          {collapsed ? <ChevronRight /> : <ChevronLeft />}
-        </button>
+        {window.innerWidth > 768 && (
+          <button
+            className="sidebar__collapse-btn"
+            onClick={() => setCollapsed(!collapsed)}
+          >
+            {collapsed ? <ChevronRight /> : <ChevronLeft />}
+          </button>
+        )}
       </div>
 
       {/* Menu */}
       <nav className="sidebar__menu">
         {menu.map((item) => (
-          <div className="sidebar__menu-item" key={item.label} onClick={()=>navigate(item.route)}>
+          <div className={`sidebar__menu-item ${currentPage.toString().toLowerCase() === item.label.toString().toLowerCase() ? "sidebar__menu-item_current" : ""}`} key={item.label} onClick={()=>navigate(item.route)}>
             <span className="icon">{item.icon}</span>
             {!collapsed && <span className="label">{item.label}</span>}
           </div>

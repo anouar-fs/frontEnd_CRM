@@ -6,9 +6,22 @@
   //SideBar
   --sidebar-bg: #f5f5f5;
   --sidebar-bg-glass: rgba(0, 0, 0, 0.05);
-  --sidebar-bg-glass-hover: rgba(0,0,0,0.15);
+  --sidebar-bg-glass-hover: #e8ebeea9;
 
-  //Main page
+  //Appointements
+  --schedule-board-bg: #ffffff;
+  --schedule-board-surface: #f8fafc;
+  --schedule-board-surface-2: #ffffff;
+  --schedule-board-border: rgba(15, 23, 42, 0.08);
+  --schedule-board-text: #0f172a;
+  --schedule-board-muted: #64748b;
+  --schedule-board-accent: #2563eb;
+  --schedule-board-accent-soft: rgba(37, 99, 235, 0.08);
+  --schedule-board-shadow: 0 20px 50px rgba(15, 23, 42, 0.08),
+    0 2px 10px rgba(15, 23, 42, 0.04);
+  --schedule-board-card-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  --schedule-board-card-shadow-hover: 0 16px 30px rgba(15, 23, 42, 0.09);
+  --font-family: "Inter", sans-serif;
 }
 
 html.dark {
@@ -17,7 +30,22 @@ html.dark {
   --card-bg: #3b3b3b4f;
   --border-color: #3a3a3a;
   //SideBar
-  --sidebar-bg: #1e1f26;
+  // --sidebar-bg: radial-gradient(ellipse at 20% 30%, #11151c, #05070a);
+  --sidebar-bg: radial-gradient(ellipse at 20% 30%, #11151c, #05070a);
   --sidebar-bg-glass: rgba(255, 255, 255, 0.05);
   --sidebar-bg-glass-hover: rgba(255, 255, 255, 0.15);
+  
+  //Appointements
+  --schedule-board-bg: #1e1f26;
+  --schedule-board-surface: rgba(255, 255, 255, 0.04);
+  --schedule-board-surface-2: rgba(255, 255, 255, 0.06);
+  --schedule-board-border: rgba(255, 255, 255, 0.08);
+  --schedule-board-text: #e6e6e6;
+  --schedule-board-muted: #a1a1aa;
+  --schedule-board-accent: #60a5fa;
+  --schedule-board-accent-soft: rgba(96, 165, 250, 0.12);
+  --schedule-board-shadow: 0 20px 50px rgba(0, 0, 0, 0.32),
+    0 2px 10px rgba(0, 0, 0, 0.18);
+  --schedule-board-card-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  --schedule-board-card-shadow-hover: 0 16px 30px rgba(0, 0, 0, 0.24);
 }

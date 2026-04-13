@@ -1,25 +1,25 @@
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
-import { leadQueryKey, leadsQueryKey } from "./cacheQueryKeys";
+import { eventQueryKey } from "./cacheQueryKeys";
 import requester from "../requester/requester";
 import { api } from "./config";
-import type { LeadData } from "../../models/Data/Lead/LeadData";
 import type { LeadType } from "../../models/leads";
+import type { AppointmentType } from "../../models/appointment";
 
-export const getLeads = (page:number,pageSize:number)=>
+export const getEvents = (date:string)=>
     queryOptions({
-        queryKey: [leadsQueryKey,page,pageSize],
-        queryFn: ()=> requester.get<LeadData>(api.get.leads(page,pageSize)),
+        queryKey: [eventQueryKey,date],
+        queryFn: ()=> requester.get<AppointmentType>(api.get.event(date)),
         staleTime: Infinity
 })
 
-export const usegetLeadsSuspenseQuery = (page:number,pageSize:number) =>{
-    const { data: leadssData } = useSuspenseQuery(getLeads(page,pageSize));
-    return leadssData;
+export const usegetEventsSuspenseQuery = (date:string) =>{
+    const { data: EventData } = useSuspenseQuery(getEvents(date));
+    return EventData;
 }
 
 export const getLead = (id:number)=>
     queryOptions({
-        queryKey: [leadQueryKey,id],
+        queryKey: [eventQueryKey,id],
         queryFn: ()=> requester.get<LeadType>(api.get.lead(id)),
         staleTime: Infinity
 })

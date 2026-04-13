@@ -1,7 +1,8 @@
 export const PATH_ROUTER = 
 {
-    Page1: '/page-1',
+    Dashboard: '/dashboard',
     Authentication:'/authentication',
-    Users:'/users',
-    Leads:'/leads'
+    Lead:'/lead/:id',
+    Leads:'/leads',
+    Appointment:'/appointment',
 };

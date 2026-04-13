@@ -1,2 +1,7 @@
 export const usersQueryKey = "users"
 export const leadsQueryKey = "leads"
+export const leadQueryKey = "lead"
+export const eventQueryKey = "event"
+export const appointementStatsQueryKey = "appstats"
+export const leadsStatsQueryKey = "leadsstats"
+export const cardStatsQueryKey = "cardStats"

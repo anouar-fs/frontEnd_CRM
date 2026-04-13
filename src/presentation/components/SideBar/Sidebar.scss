@@ -54,6 +54,10 @@ $text-muted: #9aa0b5;
     background: var(--sidebar-bg-glass-hover);
   }
 
+  .sidebar__menu-item_current {
+    background: var(--sidebar-bg-glass-hover);
+  }
+
   .sidebar__profile{
     background: var(--sidebar-bg-glass-hover);
   }
@@ -128,6 +132,46 @@ $text-muted: #9aa0b5;
       &:hover {
         opacity: 1;
       }
+    }
+  }
+  .theme-btn{
+    background: #cbcbcb00;
+    border: 1px solid #00000038;
+    padding: 5px;
+    border-radius: 10px;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 72px !important;
+
+    .label {
+      display: none !important;
+    }
+
+    .sidebar__logo {
+      display: none;
+    }
+
+    .sidebar__collapse-btn {
+      display: none;
+    }
+    .sidebar__profile{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logout{
+      display: none;
+    }
+    .sidebar__profile img{
+      display: none;
+    }
+    .sidebar__user-info{
+      display: none;
     }
   }
 }

@@ -5,10 +5,13 @@ import Layout from './presentation/pages/Layout';
 import ErrorPage from './presentation/pages/ErrorPage';
 import Loading from './presentation/pages/Loading';
 import { PATH_ROUTER } from './presentation/configuration';
-import Page1 from './presentation/pages/Page1';
 import AuthPage from './presentation/pages/Authentication/AuthPage';
-import UsersPage from './presentation/pages/Users/UsersPage';
+import UsersPage from './presentation/pages/Users/Profile';
 import LeadsPage from './presentation/pages/Leads/LeadsPage';
+import LeadPage from './presentation/pages/Lead/LeadPage';
+import EventPage from './presentation/pages/Events/EventPage';
+import Dashboard from './presentation/pages/Dashboard/Dashboard';
+import Profile from './presentation/pages/Users/Profile';
 
 export const routes: (queryClient:QueryClient) => RouteObject[] = (queryClient)=> {
     return [
@@ -34,21 +37,33 @@ export const routes: (queryClient:QueryClient) => RouteObject[] = (queryClient)=
             children:
             [
             {
-                path: PATH_ROUTER.Page1,
+                path: PATH_ROUTER.Dashboard,
                 index: true,
                 element: 
-                    <Page1/> 
+                    <Dashboard/> 
             },
             {
-                path: PATH_ROUTER.Users,
+                path: PATH_ROUTER.Lead,
                 element: 
-                    <UsersPage/>
+                    <Profile/>
             }
             ,
             {
                 path: PATH_ROUTER.Leads,
                 element: 
                     <LeadsPage/>
+            }
+            ,
+            // {
+            //     path: PATH_ROUTER.Lead,
+            //     element: 
+            //         <LeadPage/>
+            // }
+            // ,
+            {
+                path: PATH_ROUTER.Appointment,
+                element: 
+                    <EventPage/>
             }
             ] 
         }

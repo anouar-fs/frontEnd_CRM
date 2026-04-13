@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@nivo/bar": "^0.99.0",
+    "@nivo/core": "^0.99.0",
+    "@nivo/pie": "^0.99.0",
     "@tanstack/react-query": "^5.90.12",
     "g": "^2.0.1",
     "lucide-react": "^0.556.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-hook-form": "^7.68.0",
     "react-router-dom": "^7.10.1",
     "zustand": "^5.0.9"

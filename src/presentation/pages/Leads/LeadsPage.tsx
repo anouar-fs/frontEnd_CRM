@@ -2,6 +2,8 @@ import { useState } from "react";
 import { usegetLeadsSuspenseQuery } from "../../../infrastructure/queries/lead";
 import "./LeadsPage.scss";
 import Pagination from "../../components/Pagination/Pagination";
+import { Trash, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const LeadsPage = () => {
     const pageSize = 10;
@@ -32,9 +34,12 @@ const LeadsPage = () => {
                 <tbody>
                   {data ? data.leads.map((lead) => (
                     <tr key={lead.phone}>
-                      <td className="lead-name">{lead.firstName} {lead.lastName}</td>
+                      <td className="lead-name">
+                        <Link to={`/lead/${lead.id}`}>
+                          {lead.firstName} {lead.lastName}
+                        </Link> </td>
                       <td>{lead.email}</td>
-                      <td>{lead.utm_campaign}</td>
+                      <td>{lead.utmCampaign}</td>
                       <td>
                         <span className={`status`}>
                           {lead.source}
@@ -50,8 +55,12 @@ const LeadsPage = () => {
                         })}
                       </td>
                       <td className="actions">
-                        <button>View</button>
-                        <button className="danger">Delete</button>
+                        <Link to={`/lead/${lead.id}`}>
+                          <Eye className="w-5 h-5 cursor-pointer" />
+                        </Link>
+                        <button className="danger">
+                          <Trash className="w-5 h-5 cursor-pointer text-red-500" />
+                        </button>
                       </td>
                     </tr>
                   )):"nothing"}

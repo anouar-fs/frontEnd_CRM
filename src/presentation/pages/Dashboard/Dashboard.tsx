@@ -12,6 +12,8 @@ const pieStats = usegetAppointementStatsSuspenseQuery();
 const barStats = usegetLeadsStatsSuspenseQuery();
 const cardStats = usegetCardsStatsSuspenseQuery();
 
+// useActiveUserStore.setState({ activUser });
+
 return (
     <div style={{height:"100vh"}}>
         <DashboardHeader/>

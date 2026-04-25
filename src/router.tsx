@@ -6,12 +6,11 @@ import ErrorPage from './presentation/pages/ErrorPage';
 import Loading from './presentation/pages/Loading';
 import { PATH_ROUTER } from './presentation/configuration';
 import AuthPage from './presentation/pages/Authentication/AuthPage';
-import UsersPage from './presentation/pages/Users/Profile';
 import LeadsPage from './presentation/pages/Leads/LeadsPage';
-import LeadPage from './presentation/pages/Lead/LeadPage';
 import EventPage from './presentation/pages/Events/EventPage';
 import Dashboard from './presentation/pages/Dashboard/Dashboard';
 import Profile from './presentation/pages/Users/Profile';
+import Analytics from './presentation/pages/Analytics/Analytics';
 
 export const routes: (queryClient:QueryClient) => RouteObject[] = (queryClient)=> {
     return [
@@ -64,6 +63,11 @@ export const routes: (queryClient:QueryClient) => RouteObject[] = (queryClient)=
                 path: PATH_ROUTER.Appointment,
                 element: 
                     <EventPage/>
+            },
+            {
+                path: PATH_ROUTER.Analytics,
+                element:
+                    <Analytics/>
             }
             ] 
         }

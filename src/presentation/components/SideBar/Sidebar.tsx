@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./sidebar.scss";
 import {
   Home,
@@ -16,18 +16,29 @@ import { useLogoutMutation } from "../../../infrastructure/mutations/useLogoutMu
 import { useNavigate } from "react-router-dom";
 import { PATH_ROUTER } from "../../configuration";
 import { useTheme } from "../../../hooks/useTheme";
+import { getActivUser } from "../../../infrastructure/queries/ActiveUser";
+import { userRolse, type AdvisorType } from "../../../models/Data/Advisor/AdvisorType";
+import { useAuthStore } from "../../../store/auth.store";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const { mutateAsync: logoutMutation } = useLogoutMutation();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+  
+  const [activeUser, setActiveUser] = useState<AdvisorType | undefined>(undefined);
+
+    useEffect(() => {
+      getActivUser().then(user => {
+        setActiveUser(user);
+      });
+    }, []);
 
   const menu = [
     { icon: <LayoutDashboard size={20} />, label: "Dashboard", route: PATH_ROUTER.Dashboard },
     { icon: <Users size={20} />, label: "Users", route: PATH_ROUTER.Leads },
     { icon: <Target size={20} />, label: "Leads", route: PATH_ROUTER.Leads },
-    { icon: <BarChart2 size={20} />, label: "Analytics", route: PATH_ROUTER.Dashboard },
+    { icon: <BarChart2 size={20} />, label: "Analytics", route: PATH_ROUTER.Analytics },
     { icon: <Settings size={20} />, label: "Settings", route: PATH_ROUTER.Dashboard },
     { icon: <Calendar size={20} />, label: "Appointment", route: PATH_ROUTER.Appointment },
   ];
@@ -37,6 +48,7 @@ export default function Sidebar() {
   const handleClick = async ()=>{
         await logoutMutation();
         navigate(PATH_ROUTER.Authentication);
+        useAuthStore.setState({ accessToken: null })
     }
 
   return (
@@ -74,8 +86,8 @@ export default function Sidebar() {
         />
         {!collapsed && (
           <div className="sidebar__user-info">
-            <p className="name">Anouar</p>
-            <p className="role">Administrator</p>
+            <p className="name">{activeUser?.firstname}</p>
+            <p className="role">{userRolse[activeUser?.role||0]}</p>
           </div>
         )}
         <LogOut className="logout" size={20} onClick={handleClick} />

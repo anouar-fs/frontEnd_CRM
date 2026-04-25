@@ -1,6 +1,7 @@
 .loading-screen {
   position: fixed;
-  inset: 0;
+  width: 80%;
+  height: 100%;
   background: var(--bg-color);
   display: flex;
   align-items: center;

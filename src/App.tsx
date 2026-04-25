@@ -1,18 +1,21 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Layout from './presentation/pages/Layout';
-import { Suspense } from 'react';
-import Loading from './presentation/pages/Loading';
+import { useEffect } from 'react';
 
 
 function App() {
+  const location = useLocation();
 
-  const location = useLocation(); 
+  useEffect(() => {
+    const page = location.pathname.split('/').pop();
+
+    document.title = `CRM Center${' - '+page || ''}`;
+  }, [location]);
+
   return (
     <>
       <Layout>
-        <Suspense key={location.key} fallback={<Loading/>}>
           <Outlet />
-        </Suspense>
       </Layout>
     </>
   )

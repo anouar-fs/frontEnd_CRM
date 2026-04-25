@@ -2,21 +2,48 @@ import { useState } from "react";
 import { usegetLeadsSuspenseQuery } from "../../../infrastructure/queries/lead";
 import "./LeadsPage.scss";
 import Pagination from "../../components/Pagination/Pagination";
-import { Trash, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Link } from "react-router-dom";
+import Modal from "../../components/modal/Modal";
+import FormLeads from "../../components/forms/FormLeads";
+import { useLeadDeleteMutation } from "../../../infrastructure/mutations/useLeadDeleteMutation";
+import { toast } from "sonner";
+import DeleteModal from "../../components/modal/DeleteModal";
 
 const LeadsPage = () => {
     const pageSize = 10;
     const [currentPage,setCurrentPage] = useState(1);
-    const data = usegetLeadsSuspenseQuery(currentPage,pageSize);
-    
+    const data = usegetLeadsSuspenseQuery(currentPage,pageSize);  
+    const [open, setOpen] = useState(false);
+    const { mutation: leaddeleteMutate } = useLeadDeleteMutation();
+
+    const handleDelete = (id:number)=>{
+        toast.promise(
+          leaddeleteMutate.mutateAsync(id),
+          {
+            loading: 'Deleting lead...',
+            success: 'Lead deleted successfully!',
+            error: (error) => error.message || 'Failed to delete the lead'
+          }
+        )
+    }
+
+
     return (
         <>
         <div className="leads-table-card">
             <div className="leads-table-header">
               <h2>Leads</h2>
-              <button className="primary-btn">+ New Lead</button>
+              <button className="primary-btn" onClick={() => setOpen(true)}>+ New Lead</button>
             </div>
+
+            <Modal
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                title="Add new lead"
+              >
+            <FormLeads onClose={() => setOpen(false)}/>
+            </Modal>
             
             <div className="table-wrapper">
               <table className="leads-table">
@@ -58,14 +85,13 @@ const LeadsPage = () => {
                         <Link to={`/lead/${lead.id}`}>
                           <Eye className="w-5 h-5 cursor-pointer" />
                         </Link>
-                        <button className="danger">
-                          <Trash className="w-5 h-5 cursor-pointer text-red-500" />
-                        </button>
+                        <DeleteModal id={lead.id||0} handleDelete={handleDelete}/>
                       </td>
                     </tr>
                   )):"nothing"}
                 </tbody>
               </table>
+
 
               <Pagination 
                 currentPage={currentPage}

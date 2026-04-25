@@ -20,7 +20,7 @@ function createHeaders(options?: RequestOptions) {
 
 async function refreshAccessToken() {
   const res = await fetch(
-    `${import.meta.env.VITE_BACK_END_API_URL}/Auth/refresh`,
+    `${import.meta.env.VITE_BACK_END_API_URL}/api/Auth/refresh`,
     {
       method: "POST",
       credentials: "include",
@@ -36,7 +36,6 @@ async function refreshAccessToken() {
 async function fetchCustom<TResponse>(url: string, init: RequestInit, options?: RequestOptions) {
 
   const token = useAuthStore.getState().accessToken;
-  console.log("from the fetch custom "+token)
   const config = {
     ...init,
     headers: {
@@ -47,75 +46,55 @@ async function fetchCustom<TResponse>(url: string, init: RequestInit, options?: 
     credentials: "include",
   };
 
-  var response = await fetch(`${import.meta.env.VITE_BACK_END_API_URL}${url}`, config);
+  let response = await fetch(`${import.meta.env.VITE_BACK_END_API_URL}${url}`, config);
+
 
   if (response.ok) {
-    // if (timerPing) {
-    //   clearInterval(timerPing);
-    // }
-
-    // timerPing = setInterval(
-    //   async () => {
-    //     await requester.user();
-    //   },
-    //   10 * 60 * 1000,
-    // );
-
     return response.status === HttpStatus.NoContent ? ({} as TResponse) : (response.json() as TResponse);
-  }else{
-    console.log(response.status)
-    console.log(response)
+  }else if(response.status !== HttpStatus.Unauthorized){
+    const errorBody = await response.json();
+    throw new Error(errorBody.Message || "Request failed");
   }
+  else if (response.status === HttpStatus.Unauthorized && !useAuthStore.getState().accessToken) {
 
-  if (response.status === HttpStatus.Unauthorized && !useAuthStore.getState().accessToken) {
-    const newToken = await requester.post(`${api.post.refresh()}`)
-    console.log("token from unauth"+newToken.accessToken)
-    useAuthStore.setState({ accessToken: newToken.accessToken });
-    // if (newToken) {
-      // useAuthStore.getState().setAccessToken(newToken);
+        const newToken = await refreshAccessToken();
+        if(!newToken){
+          window.location.href = PATH_ROUTER.Authentication;
+        }
+        useAuthStore.setState({ accessToken: newToken });
+        const retryConfig = {
+          ...init,
+          headers: {
+            ...init.headers,
+            ...createHeaders(options),
+            ...(newToken ? { Authorization: `Bearer ${useAuthStore.getState().accessToken}` } : {}),
+          },
+          credentials: "include",
+        };
 
-      const retryConfig = {
-        ...init,
-        headers: {
-          ...init.headers,
-          ...createHeaders(options),
-          ...(newToken.accessToken ? { Authorization: `Bearer ${useAuthStore.getState().accessToken}` } : {}),
-        },
-        credentials: "include",
-      };
+        response = await fetch(
+          `${import.meta.env.VITE_BACK_END_API_URL}${url}`,
+          retryConfig
+        );
 
-      console.log("The Access Token isn't working like what the hell")
+        if (response.ok) {
+          return response.status === HttpStatus.NoContent
+            ? ({} as TResponse)
+            : (response.json() as TResponse);
+        }
 
-      response = await fetch(
-        `${import.meta.env.VITE_BACK_END_API_URL}${url}`,
-        retryConfig
-      );
-
-      if (response.ok) {
-        return response.status === HttpStatus.NoContent
-          ? ({} as TResponse)
-          : (response.json() as TResponse);
-      }
-    // }
-    
-
-  throw new Problem({
-    title: response.statusText,
-    status: response.status,
-  });
-}else{
-  window.location.href = PATH_ROUTER.Authentication;
+    }
 }
 
-}
+
 
 const requester = {
   get: <TResponse>(url: string, options?: RequestOptions) => fetchCustom<TResponse>(url, { method: 'GET' }, options),
+  delete: <TResponse>(url: string, options?: RequestOptions) => fetchCustom<TResponse>(url, { method: 'DELETE' }, options),
   post: <TResponse>(url: string, body?: BodyInit | null | undefined, options?: RequestOptions) =>
     fetchCustom<TResponse>(url, { method: 'POST', body: body || emptyRequestBody }, { contentType: 'application/json', ...options }),
   patch: <TResponse>(url: string, body: BodyInit, options?: RequestOptions) =>
     fetchCustom<TResponse>(url, { method: 'PATCH', body }, { contentType: 'application/json-patch+json', ...options }),
-//   user: () => fetchUser(),
 };
 
 export default requester;

@@ -9,12 +9,13 @@ import { PATH_ROUTER } from "../../configuration";
 
 export default function AuthPage() {
   const [isRegister, setIsRegister] = useState(false);
+  const [isError, setIsError] = useState(false);
   const { mutateAsync: authMutate } = useAuthMutation();
   const setToken = useAuthStore((state) => state.setToken);
   const navigate = useNavigate()
 
 
-  const {
+const {
       control,
       clearErrors,
       formState: { errors },
@@ -28,15 +29,24 @@ export default function AuthPage() {
   const toggleMode = () => {
     setIsRegister(!isRegister);
   };
- 
 
-  const onSubmit: SubmitHandler<AuthCredentialsType> = async (data) => {
-    const token = await authMutate(data);
-    reset();
-    setToken(token.accessToken);
-    navigate(PATH_ROUTER.Users);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
+const onSubmit: SubmitHandler<AuthCredentialsType> = async (data) => {
+  setIsLoading(true);
+  setIsError(false);
+  try {
+      const token = await authMutate(data);
+      reset();
+      setToken(token.accessToken);
+      navigate(PATH_ROUTER.Dashboard);
+  } catch (error) {
+    console.error(error)
+      setIsError(true);
+  } finally {
+      setIsLoading(false);
+  }
+};
   return (
     <div className="auth-container">
     <div className="auth-page">
@@ -105,17 +115,22 @@ export default function AuthPage() {
                 <label>Confirm Password</label>
               </div>
             )}
-
-            <button type="submit" className="btn-primary">
-              {isRegister ? "Sign Up" : "Login"}
+            {isError && <span className="danger-btn">Username or password is invalid please try agaiin !</span>}
+            <button
+              type="submit"
+              className="btn-primary"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="spinner"></span>
+              ) : isRegister ? (
+                "Sign Up"
+              ) : (
+                "Login"
+              )}
             </button>
 
-            <div className="social-login">
-              <button className="btn-google">Continue with Google</button>
-              <button className="btn-github">Continue with GitHub</button>
-            </div>
           </form>
-
           <p className="toggle-text">
             {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
             <span onClick={toggleMode}>{isRegister ? "Login" : "Sign Up"}</span>

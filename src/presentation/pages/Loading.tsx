@@ -2,6 +2,7 @@ import "./Loading.scss";
 
 const Loading = () => {
   return (
+    <>
     <div className="loading-screen">
       <div className="loader">
         <div className="dot dot1"></div>
@@ -9,6 +10,7 @@ const Loading = () => {
         <div className="dot dot3"></div>
       </div>
     </div>
+    </>
   );
 };
 

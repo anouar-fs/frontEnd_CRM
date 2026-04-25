@@ -1,0 +1,242 @@
+.lead-form {
+    margin-top: 4px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.form-group input {
+    height: 50px;
+    padding: 0 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    background: var(--schedule-board-surface);
+    color: var(--text-color);
+    outline: none;
+    font-size: 14px;
+    transition: 0.22s ease;
+    box-shadow: var(--schedule-board-card-shadow);
+}
+
+.form-group input::placeholder {
+    color: var(--schedule-board-muted);
+}
+
+.form-group input:hover {
+    transform: translateY(-1px);
+}
+
+.form-group input:focus {
+    border-color: var(--schedule-board-accent);
+    background: var(--schedule-board-surface-2);
+    box-shadow:
+    0 0 0 4px var(--schedule-board-accent-soft),
+    var(--schedule-board-card-shadow-hover);
+}
+
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.primary-btn {
+    border: none;
+    padding: 13px 22px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(
+        135deg,
+        var(--schedule-board-accent),
+        #1d4ed8
+    );
+    box-shadow: var(--schedule-board-card-shadow);
+    transition: 0.22s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--schedule-board-card-shadow-hover);
+}
+
+.secondary-btn {
+    border: 1px solid var(--border-color);
+    background: var(--schedule-board-surface);
+    color: var(--text-color);
+    padding: 13px 22px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.22s ease;
+}
+
+.secondary-btn:hover {
+    background: var(--schedule-board-surface-2);
+    transform: translateY(-2px);
+}
+
+// phone inputs
+.phone-field {
+  width: 100%;
+}
+
+/* Main wrapper */
+.phone-field .PhoneInput {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+
+  background: var(--schedule-board-surface);
+  color: var(--text-color);
+
+  box-shadow: var(--schedule-board-card-shadow);
+  transition: all 0.22s ease;
+
+  padding: 0 12px;
+}
+
+/* Hover */
+.phone-field .PhoneInput:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--schedule-board-card-shadow-hover);
+}
+
+/* Focus */
+.phone-field .PhoneInput:focus-within {
+  border-color: var(--schedule-board-accent);
+  background: var(--schedule-board-surface-2);
+  box-shadow:
+    0 0 0 4px var(--schedule-board-accent-soft),
+    var(--schedule-board-card-shadow-hover);
+}
+
+/* Country selector button */
+.phone-field .PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  margin-right: 6px;
+  border-right: 1px solid var(--border-color);
+}
+
+.phone-field .PhoneInputCountrySelect {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.phone-field .PhoneInputCountryIcon {
+  width: 22px;
+  height: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Flag */
+.phone-field .PhoneInputCountry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Arrow */
+.phone-field .PhoneInputCountrySelectArrow {
+  margin-left: 2px;
+  color: var(--schedule-board-muted);
+  opacity: 0.9;
+}
+
+/* Input */
+.phone-field .PhoneInputInput {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
+  font-size: 14px;
+  padding: 0;
+}
+
+/* Placeholder */
+.phone-field .PhoneInputInput::placeholder {
+  color: var(--schedule-board-muted);
+}
+
+/* Dark mode refinement */
+html.dark .phone-field .PhoneInput {
+  backdrop-filter: blur(10px);
+}
+
+.errorMessage{
+  color: #e11d48;
+  margin: 5px 5px;
+}
+/* Mobile */
+@media (max-width: 700px) {
+  .phone-field .PhoneInput {
+    height: 50px;
+  }
+}
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    // .form-actions {
+    //     flex-direction: column-reverse;
+    // }
+
+    // .primary-btn,
+    // .secondary-btn {
+    //     width: 100%;
+    // }
+}
+

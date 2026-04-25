@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { AdvisorType } from "../models/Data/Advisor/AdvisorType";
 
 // interface AuthState {
 //     accessToken: string | null;
@@ -7,6 +8,11 @@ import { create } from "zustand";
 export const useAuthStore = create((set) => ({
     accessToken: null,
     setToken: (token:string) => set({ accessToken: token }),
+}));
+
+export const useActiveUserStore = create((set) => ({
+    activeUser: null,
+    setToken: (activUser:AdvisorType) => set({ activeUser: activUser }),
 }));
 
 export const useThemeStore = create((set) => ({

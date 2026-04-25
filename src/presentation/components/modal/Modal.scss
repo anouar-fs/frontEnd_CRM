@@ -1,0 +1,79 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.modal {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  box-shadow: var(--schedule-board-shadow);
+  overflow: hidden;
+  animation: modalFade 0.22s ease;
+  padding: 30px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+.modal-content {
+  padding: 24px;
+}
+
+.close-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  background: var(--schedule-board-surface);
+  color: var(--text-color);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.22s ease;
+}
+
+.close-btn:hover {
+  background: var(--schedule-board-surface-2);
+  transform: rotate(90deg);
+  box-shadow: var(--schedule-board-card-shadow);
+}
+
+.header{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -4,5 +4,7 @@ import { api } from "../queries/config";
 
 export const useLogoutMutation = () =>
 useMutation({
-    mutationFn: () => requester.post(`${api.post.logout()}`),
+    mutationFn: () => (
+        requester.post(`${api.post.logout()}`)
+    ),
 });

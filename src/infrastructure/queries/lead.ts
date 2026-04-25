@@ -28,3 +28,4 @@ export const usegetLeadSuspenseQuery = (id:number) =>{
     const { data: leadData } = useSuspenseQuery(getLead(id));
     return leadData;
 }
+

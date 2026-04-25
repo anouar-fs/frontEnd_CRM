@@ -1,0 +1,257 @@
+/* ErrorPage.scss */
+
+.error-page {
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient Background */
+.error-page__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+  z-index: 0;
+}
+
+.error-page__glow--one {
+  width: 320px;
+  height: 320px;
+  background: #3b82f6;
+  top: -80px;
+  left: -80px;
+}
+
+.error-page__glow--two {
+  width: 360px;
+  height: 360px;
+  background: #8b5cf6;
+  bottom: -120px;
+  right: -100px;
+}
+
+/* Main Card */
+.error-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1180px;
+  min-height: 620px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 28px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+/* LEFT SIDE */
+.error-card__left {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.error-badge {
+  width: fit-content;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+}
+
+.error-code {
+  font-size: clamp(5rem, 10vw, 8rem);
+  line-height: 1;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.error-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.error-text {
+  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  opacity: 0.78;
+  margin-bottom: 2.4rem;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  padding: 0.95rem 1.4rem;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.25);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* RIGHT SIDE */
+.error-card__right {
+  background: linear-gradient(
+    160deg,
+    rgba(59, 130, 246, 0.08),
+    rgba(139, 92, 246, 0.08)
+  );
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.orbital-box {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin-bottom: 2rem;
+}
+
+.orbital-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  animation: spin 10s linear infinite;
+}
+
+.orbital-ring--two {
+  inset: 28px;
+  animation-direction: reverse;
+  animation-duration: 7s;
+}
+
+.orbital-center {
+  position: absolute;
+  inset: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 4rem;
+  font-weight: 800;
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.35);
+}
+
+.error-info {
+  text-align: center;
+}
+
+.error-info span {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.65;
+  margin-bottom: 0.4rem;
+}
+
+.error-info strong {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .error-card {
+    grid-template-columns: 1fr;
+  }
+
+  .error-card__right {
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+    min-height: 320px;
+  }
+
+  .error-card__left {
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .error-title {
+    font-size: 1.7rem;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .orbital-box {
+    width: 220px;
+    height: 220px;
+  }
+
+  .orbital-center {
+    inset: 58px;
+    font-size: 3rem;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

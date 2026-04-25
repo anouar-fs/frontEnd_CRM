@@ -158,6 +158,7 @@
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   box-shadow: var(--schedule-board-card-shadow);
+  margin: 20px 0px;
 
   &--glass {
     backdrop-filter: blur(10px);
@@ -389,4 +390,10 @@
     font-size: 11px;
     color: var(--schedule-board-muted);
   }
+}
+
+@media (max-width: 968px) {
+    .profilelayout {
+        grid-template-columns: 1fr;
+    }
 }

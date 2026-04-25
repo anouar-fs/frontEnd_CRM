@@ -29,7 +29,7 @@ updateDate
 }: ScheduleBoardProps) {
     
 
-    // time slots of appointements
+// time slots of appointements
 const timeSlots = React.useMemo(() => {
     return Array.from(new Set(appointments.map((item) => item.heureDebut))).sort(sortTimes);
 }, [appointments]);

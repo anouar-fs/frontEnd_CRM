@@ -1,0 +1,145 @@
+.advisor-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  min-width: 220px;
+  height: 48px;
+  padding: 0 3rem 0 1rem;
+
+  border-radius: 14px;
+  border: 1px solid var(--schedule-board-border);
+
+  background: linear-gradient(
+      135deg,
+      var(--schedule-board-surface),
+      var(--schedule-board-surface-2)
+    );
+    
+  color: var(--schedule-board-text);
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  box-shadow: var(--schedule-board-card-shadow);
+  cursor: pointer;
+  outline: none;
+
+  transition: all 0.25s ease;
+
+  // custom arrow
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--schedule-board-muted) 50%),
+    linear-gradient(135deg, var(--schedule-board-muted) 50%, transparent 50%);
+    
+  background-position:
+    calc(100% - 20px) calc(50% - 3px),
+    calc(100% - 14px) calc(50% - 3px);
+
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: var(--schedule-board-accent);
+    box-shadow: var(--schedule-board-card-shadow-hover);
+    background-color: var(--schedule-board-surface-2);
+  }
+
+  &:focus {
+    border-color: var(--schedule-board-accent);
+    box-shadow:
+      0 0 0 4px var(--schedule-board-accent-soft),
+      var(--schedule-board-card-shadow);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  option {
+    background: var(--schedule-board-bg);
+    color: var(--schedule-board-text);
+    font-weight: 500;
+  }
+}
+.chart-container {
+    margin: 0px 40px;
+    padding: 30px;
+    background: var(--schedule-board-bg);
+    border-radius: 16px;
+    box-shadow: var(--schedule-board-card-shadow);
+    height: 600px;
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--schedule-board-text);
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+.chartBox{
+    margin-bottom: 20px;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+.kpi-card {
+  background: linear-gradient(
+    135deg,
+    var(--schedule-board-bg),
+    var(--schedule-board-surface)
+  );
+
+  border: 1px solid var(--schedule-board-border);
+  border-radius: 22px;
+  padding: 1.6rem;
+  box-shadow: var(--schedule-board-shadow);
+
+  transition: all 0.25s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--schedule-board-card-shadow-hover);
+}
+
+.kpi-title {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--schedule-board-text);
+  line-height: 1.2;
+}
+
+.kpi-description {
+  margin-top: 0.85rem;
+  margin-bottom: 1.5rem;
+
+  color: var(--schedule-board-muted);
+  font-size: 0.96rem;
+  line-height: 1.75;
+  font-weight: 500;
+
+  width: 100%;
+
+  padding: 1rem;
+  border-left: 4px solid var(--schedule-board-accent);
+  background: var(--schedule-board-accent-soft);
+
+  border-radius: 0 14px 14px 0;
+}
+
+.kpi-description strong {
+  color: var(--schedule-board-text);
+  font-weight: 700;
+}
+
+.kpi-description span {
+  color: var(--schedule-board-accent);
+  font-weight: 700;
+}

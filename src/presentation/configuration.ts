@@ -5,4 +5,5 @@ export const PATH_ROUTER =
     Lead:'/lead/:id',
     Leads:'/leads',
     Appointment:'/appointment',
+    Analytics:'/Analytics'
 };

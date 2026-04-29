@@ -1,0 +1,46 @@
+name: Auto Merge to Main
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run build
+        run: npm run build
+  merge-to-main:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Merge branch into main
+        run: |
+          BRANCH=${GITHUB_HEAD_REF}
+
+          git checkout main
+          git pull origin main
+          git merge origin/$BRANCH --no-edit
+          git push origin main

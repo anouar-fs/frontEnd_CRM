@@ -62,7 +62,8 @@ const onSubmit: SubmitHandler<AuthCredentialsType> = async (data) => {
               control={control}
               rules={{
                 required: "Username is required",
-                minLength: { value: 5, message: "Username is too small" }
+                minLength: { value: 5, message: "Username is too small" },
+                maxLength: { value: 30, message: "Username is too long" }
               }}
               render={({ field }) => (
                 <>
@@ -86,7 +87,8 @@ const onSubmit: SubmitHandler<AuthCredentialsType> = async (data) => {
                 control={control}
                 rules={{
                   required: "Password is required",
-                  minLength: { value: 10, message: "Password is too small" }
+                  minLength: { value: 10, message: "Password is too small" },
+                  maxLength: { value: 30, message: "Password is too long" }
                 }}
                 render={({ field }) => (
                   <>

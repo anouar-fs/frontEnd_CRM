@@ -19,7 +19,7 @@ const Page1 = () => {
             <div>this is the Page1</div>
             <p>this is token {accessToken}</p>
             <button onClick={newToken}>Get Refreshed Token</button>
-            <button onClick={()=>navigate(PATH_ROUTER.Users)}>Go to users</button>
+            <button onClick={()=>navigate(PATH_ROUTER.Appointment)}>Go to users</button>
         </>
     )
 }

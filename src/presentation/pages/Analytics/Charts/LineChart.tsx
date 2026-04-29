@@ -3,6 +3,7 @@ import { usegetAnalyticsStatsSuspenseQuery } from '../../../../infrastructure/qu
 import { useState } from 'react';
 import "../Analytics.scss"
 import { usegetAdvisorsSuspenseQuery } from '../../../../infrastructure/queries/Advisors';
+import type { MonthlyStat } from '../../../../models/appointementAnalytics';
 
 
 const LineChart = () => {
@@ -10,10 +11,9 @@ const LineChart = () => {
 
     const analytics = usegetAnalyticsStatsSuspenseQuery(advisorId);
     const advisors = usegetAdvisorsSuspenseQuery();
-    console.log(advisors)
-    const data = Object.entries(analytics).map(([stat,values])=>({
+    const data = Object.entries(analytics ?? {}).map(([stat,values])=>({
         id:stat,
-        data: values.map((app)=>({
+        data: values.map((app:MonthlyStat)=>({
             x: app.month,
             y: app.total,
         })) 
@@ -29,8 +29,8 @@ const LineChart = () => {
                 setAdvisorId(Number(e.target.value))
             }
             >
-                {advisors?.map((advisor)=>(
-                    <option value={advisor.id}>{advisor.firstname+' '+advisor.lastname}</option>
+                {(advisors ?? []).map((advisor)=>(
+                    <option key={advisor.id} value={advisor.id}>{advisor.firstname+' '+advisor.lastname}</option>
                 ))}
         </select>
         <div className="chart-container">

@@ -6,7 +6,7 @@ import { PATH_ROUTER } from "./presentation/configuration";
 export function GuestRoute({ children }: { children: JSX.Element }) {
     const token = useAuthStore.getState().accessToken
     if (token) {
-        return <Navigate to={PATH_ROUTER.Page1} replace />;
+        return <Navigate to={PATH_ROUTER.Appointment} replace />;
     }
 
     return children;

@@ -2,10 +2,11 @@ import { Mail, Phone } from "lucide-react";
 import "./LeadPage.scss";
 import { useParams } from "react-router-dom";
 import { usegetLeadSuspenseQuery } from "../../../infrastructure/queries/lead";
+import type { LeadType } from "../../../models/leads";
 
 const LeadPage = () => {
     const {id} = useParams()
-    const lead = usegetLeadSuspenseQuery(id)
+    const lead = (usegetLeadSuspenseQuery(Number(id)) ?? {} as LeadType)
 
   return (
     <div className="lead-page">

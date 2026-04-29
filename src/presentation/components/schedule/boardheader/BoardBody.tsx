@@ -12,7 +12,7 @@ const BoardBody = ({item,locale}:BoardBodyProps) => {
     const leadName = item.lead
     ? `${item.lead.firstName} ${item.lead.lastName}`
     : "Lead inconnu";
-    const advisorName = item.advisor?.username ?? "Conseiller inconnu";
+    const advisorName = item.advisor?.firstname + " " + item.advisor?.lastname;
 
     return (
     <article
@@ -25,7 +25,7 @@ const BoardBody = ({item,locale}:BoardBodyProps) => {
         </div>
 
         <div className="schedule-board__item-body">
-        <strong>{advisorName}</strong>
+        <strong>{advisorName ?? "Conseiller inconnu"}</strong>
         <p>Created on {formatCreatedAt(item.createdAt, locale)}</p>
         </div>
 

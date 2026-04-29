@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import "./sidebar.scss";
+import "./Sidebar.scss";
 import {
-  Home,
   Users,
   LayoutDashboard,
   BarChart2,

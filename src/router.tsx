@@ -12,7 +12,7 @@ import Dashboard from './presentation/pages/Dashboard/Dashboard';
 import Profile from './presentation/pages/Users/Profile';
 import Analytics from './presentation/pages/Analytics/Analytics';
 
-export const routes: (queryClient:QueryClient) => RouteObject[] = (queryClient)=> {
+export const routes: (queryClient:QueryClient) => RouteObject[] = ()=> {
     return [
         {
             path: PATH_ROUTER.Authentication,

@@ -1,6 +1,5 @@
 import { PATH_ROUTER } from "../../presentation/configuration";
 import { useAuthStore } from "../../store/auth.store";
-import { api } from "../queries/config";
 import { HttpStatus } from "./HttpStatus";
 
 type RequestOptions = {
@@ -36,7 +35,7 @@ async function refreshAccessToken() {
 async function fetchCustom<TResponse>(url: string, init: RequestInit, options?: RequestOptions) {
 
   const token = useAuthStore.getState().accessToken;
-  const config = {
+  const config:RequestInit = {
     ...init,
     headers: {
       ...init.headers,
@@ -62,7 +61,7 @@ async function fetchCustom<TResponse>(url: string, init: RequestInit, options?: 
           window.location.href = PATH_ROUTER.Authentication;
         }
         useAuthStore.setState({ accessToken: newToken });
-        const retryConfig = {
+        const retryConfig : RequestInit  = {
           ...init,
           headers: {
             ...init.headers,

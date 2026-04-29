@@ -105,6 +105,7 @@ return (
                 items.map((item) => {
                     return (
                     <BoardBody
+                        key={item.id}
                         item={item}
                         locale={locale}
                     />)

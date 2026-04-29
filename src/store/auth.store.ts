@@ -1,21 +1,32 @@
 import { create } from "zustand";
 import type { AdvisorType } from "../models/Data/Advisor/AdvisorType";
 
-// interface AuthState {
-//     accessToken: string | null;
-// }
+interface AuthState {
+    accessToken: string | null;
+    setToken: (token: string) => void;
+}
 
-export const useAuthStore = create((set) => ({
+export const useAuthStore = create<AuthState>((set) => ({
     accessToken: null,
     setToken: (token:string) => set({ accessToken: token }),
 }));
 
-export const useActiveUserStore = create((set) => ({
+interface ActiveUserState {
+    activeUser: AdvisorType | null;
+    setToken: (activeUser: AdvisorType) => void;
+}
+
+export const useActiveUserStore = create<ActiveUserState>((set) => ({
     activeUser: null,
     setToken: (activUser:AdvisorType) => set({ activeUser: activUser }),
 }));
 
-export const useThemeStore = create((set) => ({
+interface ThemeState {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
+
+export const useThemeStore = create<ThemeState>((set) => ({
     theme: localStorage.getItem("theme")||"light",
     setTheme: (theme:string) => set({ theme: theme }),
 }));

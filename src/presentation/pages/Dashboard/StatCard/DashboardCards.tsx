@@ -17,12 +17,11 @@ return (
     {
         stats.map(s => (
             <StatCard
-                title={CARD_META[s.key].title}
+                cardMeta={CARD_META[s.key]}
                 value={s.value}
                 trendText="Increased by 60%"
                 trendType="up"
-                icon={CARD_META[s.key].icon}
-                gradient={[CARD_META[s.key].color1, CARD_META[s.key].color2]}
+
             />
         ))
     }

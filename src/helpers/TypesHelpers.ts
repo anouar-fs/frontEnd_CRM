@@ -2,7 +2,8 @@ import { TrendingUp, Bookmark, Gem, type LucideProps } from "lucide-react";
 
 export type AdvisorType = {
 id: number;
-username: string;
+firstname: string;
+lastname: string;
 };
 
 export type StatusMeta = {

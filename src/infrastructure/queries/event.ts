@@ -8,7 +8,7 @@ import type { AppointmentType } from "../../models/appointment";
 export const getEvents = (date:string)=>
     queryOptions({
         queryKey: [eventQueryKey,date],
-        queryFn: ()=> requester.get<AppointmentType>(api.get.event(date)),
+        queryFn: ()=> requester.get<AppointmentType[]>(api.get.event(date)),
         staleTime: Infinity
 })
 

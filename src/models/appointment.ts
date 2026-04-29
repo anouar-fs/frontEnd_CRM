@@ -1,12 +1,13 @@
+import type { AdvisorType } from "../helpers/TypesHelpers";
 import type { LeadType } from "./leads";
-import type { UserType } from "./user";
 
 export type AppointmentType = {
     id: number;
-    advisor: UserType;
+    advisor: AdvisorType;
     lead: LeadType;
     date: string; 
     heureDebut: string;
     statut: number;
     createdAt: string;
+    
 };

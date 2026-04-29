@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { usegetLeadSuspenseQuery } from "../../../infrastructure/queries/lead";
 import { LeadProfilePage } from "../../components/leadProfile/LeadProfilePage";
+import type { LeadType } from "../../../models/leads";
 
 
 const Profile = () => {
     const {id} = useParams()
-    const lead = usegetLeadSuspenseQuery(id)
+    const lead = usegetLeadSuspenseQuery(Number(id)) ?? {} as LeadType
   return (
     <>
       <LeadProfilePage

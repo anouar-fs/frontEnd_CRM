@@ -20,7 +20,7 @@ const DashboardHeader = () => {
             fontSize: "14px",
             color: isDark?"#ffffff":"#6B7280"
         }}>
-            Welcome back — here’s what’s happening today.
+            Welcome back — here's what's happening today.
         </p>
     </div>
     )

@@ -8,13 +8,13 @@ export const api = {
     },
     get : {
         users: ()=> '/api/Auth',
-        leads: (page:number,pageSize:number)=> `/api/Lead?page=${page}&pageSize=${pageSize}`,
+        leads: (page?:number,pageSize?:number)=> (page && pageSize)?`/api/Lead?page=${page}&pageSize=${pageSize}`:`/api/Lead`,
         lead: (id:number)=> `/api/Lead/${id}`,
-        event: (date:string)=>`/rdvs/${date}`,
+        event: (date?:string)=>`/rdvs/${date}`,
         appointementStats: ()=>`/api/Event/appointements/status/data`,
         leadsStats: ()=>`/lead/stats`,
         cardStats: ()=>`/appointement/stats`,
-        analyticssStats: (idAdvisor:number)=>`/appointement/Analytics?idAdvisor=${idAdvisor}`,
+        analyticssStats: (idAdvisor?:number)=>`/appointement/Analytics?idAdvisor=${idAdvisor}`,
         advisors: ()=>`/api/Advisor`,
         ActivUser: ()=>`/api/Auth/currentUser`
     },

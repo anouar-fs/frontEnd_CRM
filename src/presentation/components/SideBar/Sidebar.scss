@@ -13,6 +13,7 @@ $text-muted: #9aa0b5;
   padding: 1.2rem 0.8rem;
   color: var(--text-color);
   position: relative;
+  z-index: 99;
 
   &.collapsed {
     width: 72px;

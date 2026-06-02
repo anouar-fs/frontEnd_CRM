@@ -1,0 +1,117 @@
+.topnav {
+height: 72px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-around;
+position: relative;
+padding: 0 1.5rem;
+
+background: var(--sidebar-bg);
+backdrop-filter: blur(18px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+position: fixed;
+top: 0;
+z-index: 50;
+
+color: var(--text-color);
+
+// LEFT
+&__left {
+    .logo {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+    opacity: 0.95;
+    }
+}
+
+// CENTER SEARCH (premium focus)
+&__search {
+    flex: 1;
+    max-width: 520px;
+
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 0.65rem 0.9rem;
+    margin: 0 2rem;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition: all 0.25s ease;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+    &:focus-within {
+    border-color: rgba(108, 92, 231, 0.7);
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15),
+        0 15px 40px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+    }
+
+    input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: inherit;
+    font-size: 0.95rem;
+
+    &::placeholder {
+        color: #9aa0b5;
+    }
+    }
+
+    .shortcut {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #9aa0b5;
+    }
+}
+
+// RIGHT ACTIONS
+&__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    .btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    padding: 0.55rem 0.75rem;
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+
+    color: inherit;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    &.primary {
+        background: #6c5ce7;
+        border: none;
+        color: white;
+
+        &:hover {
+        background: #5a4bd6;
+        }
+    }
+    }
+}
+}

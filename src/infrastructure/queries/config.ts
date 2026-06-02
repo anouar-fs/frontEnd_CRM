@@ -16,7 +16,8 @@ export const api = {
         cardStats: ()=>`/appointement/stats`,
         analyticssStats: (idAdvisor?:number)=>`/appointement/Analytics?idAdvisor=${idAdvisor}`,
         advisors: ()=>`/api/Advisor`,
-        ActivUser: ()=>`/api/Auth/currentUser`
+        ActivUser: ()=>`/api/Auth/currentUser`,
+        search: (query:string)=>`/api/Lead/search?q=${query}`
     },
     delete : {
         lead: (id:number)=> `/api/Lead/${id}`

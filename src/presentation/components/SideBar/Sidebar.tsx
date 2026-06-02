@@ -55,7 +55,7 @@ export default function Sidebar() {
       
       {/* Header */}
       <div className="sidebar__header">
-        {!collapsed && <h1 className="sidebar__logo">MyPanel</h1>}
+        {!collapsed && <h1 className="sidebar__logo">CRM Center</h1>}
         {window.innerWidth > 768 && (
           <button
             className="sidebar__collapse-btn"
